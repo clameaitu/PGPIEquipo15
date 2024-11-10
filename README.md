@@ -8,7 +8,7 @@ deactivate                      # para desactivarlo
 ```
 
 ### Para las dependencias:
-Para instalar todas:
+Para instalar todas (en principio debería de funcionar):
 ```
 pip install -r requirements.txt
 ```
@@ -20,13 +20,24 @@ pip install Pillow
 # ...
 ```
 
-Para actualizar el requirements.txt con más dependencias:
+Para actualizar el requirements.txt con las dependencias que se tengan en el momento:
 ```
 pip freeze > requirements.txt
 ```
 
-### Para lanzar la aplicación y lo que sea:
+### Para hacer las migraciones cada vez que añadamos algún modelo:
 ```
 python myshop\manage.py migrate
-python myshop\manage.py runserver    # éste es para lanzarla seguro
 ```
+
+### Para lanzar la aplicación:
+```
+python myshop\manage.py runserver
+```
+
+### Administrador
+Para acceder al administrador: ```http://127.0.0.1:8000/admin/```
+
+Credenciales de administrador:
+ - **Username**: ```admin```
+ - **Password**: ```admin```
