@@ -4,16 +4,16 @@
   Your shopping cart
 {% endblock %}
 {% block content %}
-  <h1>Your shopping cart</h1>
+  <h1>Tu cesta de compra</h1>
   <table class="cart">
     <thead>
       <tr>
-        <th>Image</th>
-        <th>Product</th>
-        <th>Quantity</th>
-        <th>Remove</th>
-        <th>Unit price</th>
-        <th>Price</th>
+        <th>Imagen</th>
+        <th>Producto</th>
+        <th>Cantidad</th>
+        <th>Quitar</th>
+        <th>Precio por unidad</th>
+        <th>Precio</th>
       </tr>
     </thead>
     <tbody>
@@ -22,11 +22,11 @@
           <tr>
             <td>
               <a href="{{ product.get_absolute_url }}">
-                <img src="{% if product.image %}{{ product.image.url }}
+                <img src="{% if product.imagen %}{{ product.imagen.url }}
                 {% else %}{% static "img/no_image.png" %}{% endif %}">
               </a>
             </td>
-            <td>{{ product.name }}</td>
+            <td>{{ product.nombre }}</td>
             <td>
                 <form action="{% url "cart:cart_add" product.id %}" method="post">
                   {{ item.update_quantity_form.quantity }}
@@ -55,7 +55,7 @@
   </table>
   <p class="text-right">
     <a href="{% url "shop:product_list" %}" class="button
-    light">Continue shopping</a>
+    light">Continuar comprando</a>
     <a href="#" class="button">Checkout</a>
   </p>
 {% endblock %}
