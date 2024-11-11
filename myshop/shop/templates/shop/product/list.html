@@ -29,9 +29,13 @@
         </a>
         <a href="{{ product.get_absolute_url }}">{{ product.nombre }}</a>
         <br>
-        ${{ product.precio }}
+        {% if not product.disponible %}
+          <span style="text-decoration: line-through; color: gray;">${{ product.precio }}</span>
+          <span style="color: red; font-weight: bold;">Agotado</span>
+        {% else %}
+          ${{ product.precio }}
+        {% endif %}
       </div>
     {% endfor %}
   </div>
-
 {% endblock %}
