@@ -26,6 +26,11 @@ pip freeze > requirements.txt
 ```
 
 ### Para hacer las migraciones cada vez que añadamos algún modelo:
+Primero:
+```
+python myshop\manage.py makemigrations
+```
+Luego:
 ```
 python myshop\manage.py migrate
 ```
