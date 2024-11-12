@@ -7,6 +7,16 @@
 
 {% block content %}
   <div id="sidebar">
+    
+    <!-- Formulario de búsqueda -->
+    <h3>Buscar productos</h3>
+    <form method="get" action="{% url 'shop:search' %}" class="search-container">
+        {% csrf_token %}
+        <input type="text" name="query" id="id_query" value="{{ query }}" placeholder="Buscar productos...">
+        <div style="width: 10px;"></div>
+        <input type="submit" value="Buscar">
+    </form>
+    
     <h3>Categorías</h3>
     <ul>
       <li {% if not category %}class="selected"{% endif %}>
@@ -19,13 +29,7 @@
       {% endfor %}
     </ul>
 
-    <!-- Formulario de búsqueda -->
-    <h3>Buscar productos</h3>
-    <form method="get" action="{% url 'shop:search' %}">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit">Buscar</button>
-    </form>
+    
   </div>
 
   <div id="main" class="product-list">
