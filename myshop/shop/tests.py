@@ -115,3 +115,65 @@ class ProductDetailViewTest(TestCase):
         self.assertTemplateUsed(response, 'shop/product/detail.html')
         self.assertContains(response, "Vela de Jazmín")
         self.assertContains(response, "15,50")
+
+
+class SearchViewTest(TestCase):
+    def setUp(self):
+        self.category = Category.objects.create(nombre="Velas", slug="velas")
+        self.product1 = Product.objects.create(
+            categoria=self.category,
+            nombre="Vela de Jazmín",
+            slug="vela-de-jazmin",
+            descripcion="Una vela aromática con esencia de jazmín.",
+            precio=15.50,
+            cantidad=10
+        )
+        self.product2 = Product.objects.create(
+            categoria=self.category,
+            nombre="Vela de Lavanda",
+            slug="vela-de-lavanda",
+            descripcion="Una vela relajante con aroma a lavanda.",
+            precio=18.00,
+            cantidad=5
+        )
+
+    def test_search_view_empty_query(self):
+        response = self.client.get(reverse('shop:search'), {'query': ''})
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'shop/product/search.html')
+        self.assertContains(response, "Buscar productos")
+        self.assertEqual(len(response.context['results']), 0)
+
+    def test_search_view_valid_query(self):
+        response = self.client.get(reverse('shop:search'), {'query': 'jazmín'})
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'shop/product/search.html')
+        self.assertContains(response, "Vela de Jazmín")
+        self.assertEqual(len(response.context['results']), 1)
+        self.assertIn(self.product1, response.context['results'])
+
+    def test_search_view_partial_match_name(self):
+        response = self.client.get(reverse('shop:search'), {'query': 'Vela'})
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'shop/product/search.html')
+        self.assertContains(response, "Vela de Jazmín")
+        self.assertContains(response, "Vela de Lavanda")
+        self.assertEqual(len(response.context['results']), 2)
+
+    def test_search_view_description_match_description(self):
+        """Prueba la búsqueda que coincide con la descripción del producto"""
+        response = self.client.get(reverse('shop:search'), {'query': 'lavanda'})
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'shop/product/search.html')
+        self.assertContains(response, "Vela de Lavanda")
+        self.assertEqual(len(response.context['results']), 1)
+        self.assertIn(self.product2, response.context['results'])
+
+    def test_search_view_category_match_category(self):
+        """Prueba la búsqueda que coincide con el nombre de la categoría"""
+        response = self.client.get(reverse('shop:search'), {'query': 'Velas'})
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'shop/product/search.html')
+        self.assertContains(response, "Vela de Jazmín")
+        self.assertContains(response, "Vela de Lavanda")
+        self.assertEqual(len(response.context['results']), 2)
