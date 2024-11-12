@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404
+from django.db.models import Q
 from .models import Category, Product
 from cart.forms import CartAddProductForm
-
+from .forms import SearchForm
 
 def product_list(request, category_slug=None):
     category = None
@@ -25,3 +26,25 @@ def product_detail(request, id, slug):
                   'shop/product/detail.html',
                   {'product': product,
                    'cart_product_form': cart_product_form})
+
+def search_view(request):
+    form = SearchForm()
+    results = []
+    query = ''
+
+    if 'query' in request.GET:
+        form = SearchForm(request.GET)
+        if form.is_valid():
+            query = form.cleaned_data['query']
+            # Filtrar productos por nombre, categoría (relacionada) y descripción
+            results = Product.objects.filter(
+                Q(nombre__icontains=query) | 
+                Q(descripcion__icontains=query) | 
+                Q(categoria__nombre__icontains=query)
+            ).distinct()  # .distinct() para evitar duplicados si un producto coincide en varias categorías
+
+    return render(request, 'shop/product/search.html', {
+        'form': form,
+        'query': query,
+        'results': results
+    })

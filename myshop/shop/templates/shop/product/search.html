@@ -1,0 +1,54 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block title %}
+  Resultados de búsqueda
+{% endblock %}
+
+{% block content %}
+  <div id="sidebar">
+    <h3>Categorías</h3>
+    <ul>
+      <li {% if not category %}class="selected"{% endif %}>
+        <a href="{% url 'shop:product_list' %}"> Todo </a>
+      </li>
+      {% for c in categories %}
+        <li {% if category.slug == c.slug %} class="selected" {% endif %}>
+          <a href="{{ c.get_absolute_url }}">{{ c.nombre }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <!-- Formulario de búsqueda -->
+    <h3>Buscar productos</h3>
+    <form method="get" action="{% url 'shop:search' %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Buscar</button>
+    </form>
+  </div>
+
+  <div id="main" class="product-list">
+    <h1>Resultados de búsqueda para: "{{ query }}"</h1>
+
+    {% if results %}
+      {% for product in results %}
+        <div class="item">
+          <a href="{{ product.get_absolute_url }}">
+            <img src="{% if product.imagen %}{{ product.imagen.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}">
+          </a>
+          <a href="{{ product.get_absolute_url }}">{{ product.nombre }}</a>
+          <br>
+          {% if not product.disponible %}
+            <span style="text-decoration: line-through; color: gray;">${{ product.precio }}</span>
+            <span style="color: red; font-weight: bold;">Agotado</span>
+          {% else %}
+            ${{ product.precio }}
+          {% endif %}
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>No se encontraron productos para "{{ query }}".</p>
+    {% endif %}
+  </div>
+{% endblock %}
