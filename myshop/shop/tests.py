@@ -161,7 +161,6 @@ class SearchViewTest(TestCase):
         self.assertEqual(len(response.context['results']), 2)
 
     def test_search_view_description_match_description(self):
-        """Prueba la búsqueda que coincide con la descripción del producto"""
         response = self.client.get(reverse('shop:search'), {'query': 'lavanda'})
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'shop/product/search.html')
@@ -170,7 +169,6 @@ class SearchViewTest(TestCase):
         self.assertIn(self.product2, response.context['results'])
 
     def test_search_view_category_match_category(self):
-        """Prueba la búsqueda que coincide con el nombre de la categoría"""
         response = self.client.get(reverse('shop:search'), {'query': 'Velas'})
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'shop/product/search.html')
