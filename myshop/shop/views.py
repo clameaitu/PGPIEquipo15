@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Q
 from .models import Category, Product
 from cart.forms import CartAddProductForm
@@ -42,6 +42,8 @@ def search_view(request):
                 Q(descripcion__icontains=query) | 
                 Q(categoria__nombre__icontains=query)
             ).distinct()  # .distinct() para evitar duplicados si un producto coincide en varias categorías
+    if not query:  # If no query, redirect to product list view
+        return redirect('shop:product_list')
 
     return render(request, 'shop/product/search.html', {
         'form': form,

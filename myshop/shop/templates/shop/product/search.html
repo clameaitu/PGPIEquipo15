@@ -10,10 +10,10 @@
     
     <!-- Formulario de búsqueda -->
     <h3>Buscar productos</h3>
-    <form method="get" action="{% url 'shop:search' %}" class="search-form">
+    <form method="get" action="{% url 'shop:search' %}">
       {% csrf_token %}
       <input type="text" name="query" placeholder="Buscar productos...">
-      <button type="submit" class="btn-search">Buscar</button>
+      <input type="submit" value="Buscar">
     </form>
     
     <h3>Categorías</h3>
