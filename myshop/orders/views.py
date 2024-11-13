@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from orders.tasks import order_created
 from .models import OrderItem
 from .forms import OrderCreateForm
 from cart.cart import Cart
@@ -18,9 +19,13 @@ def order_create(request):
                                         quantity=item['quantity'])
             # clear the cart
             cart.clear()
-            return render(request,
-                          'orders/order/created.html',
-                          {'order': order})
+            # launch asynchronous task
+            order_created.delay(order.id)
+            # set the order in the session
+            request.session['order_id'] = order.id
+            # redirect for payment
+            return redirect(reverse('payment:process'))
+
     else:
         form = OrderCreateForm()
     return render(request,
