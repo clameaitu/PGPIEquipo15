@@ -1,5 +1,4 @@
 from django.shortcuts import render
-
 import braintree
 from django.shortcuts import render, redirect, get_object_or_404
 from django.conf import settings
@@ -42,3 +41,5 @@ def payment_done(request):
     return render(request, 'payment/done.html')
 def payment_cancelled(request):
     return render(request, 'payment/cancelled.html')
+
+# Create your views here.

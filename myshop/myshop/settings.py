@@ -145,3 +145,7 @@ BRAINTREE_CONF = braintree.Configuration(
 # password: TercerOjo123
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+# user: PGPI_proyecto
+# password: TercerOjo123
