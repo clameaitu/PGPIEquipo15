@@ -14,11 +14,21 @@
         {{ product.categoria }}
       </a>
     </h2>
-    <p class="price">${{ product.precio }}</p>
+    <p class="price">
+      {% if not product.disponible %}
+          <span style="text-decoration: line-through; color: gray;">${{ product.precio }}</span>
+          <span style="color: red; font-weight: bold;">Agotado</span>
+        {% else %}
+          ${{ product.precio }}
+        {% endif %}
+    </p>
+    
     <form action="{% url "cart:cart_add" product.id %}" method="post">
+      {% if product.disponible %}
       {{ cart_product_form }}
       {% csrf_token %}
       <input type="submit" value="Añadir a la cesta">
+      {% endif %}
     </form>
     {{ product.descripcion|linebreaks }}
   </div>
