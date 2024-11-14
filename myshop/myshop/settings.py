@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'shop.apps.ShopConfig',
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
+    'payment.apps.PaymentConfig',
 ]
 
 MIDDLEWARE = [
@@ -128,3 +129,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 #Shopping Cart
 
 CART_SESSION_ID = 'cart'
+
+# Braintree settings (api for the payment)
+BRAINTREE_MERCHANT_ID = 'k6btsh2ndv65dkp7'  # Merchant ID
+BRAINTREE_PUBLIC_KEY = 't7d5dbvz4w9zxqn9'   # Public Key
+BRAINTREE_PRIVATE_KEY = '69d57f8de38a39d69d7d1fc433953e47'  # Private key
+import braintree
+BRAINTREE_CONF = braintree.Configuration(
+    braintree.Environment.Sandbox,
+    BRAINTREE_MERCHANT_ID,
+    BRAINTREE_PUBLIC_KEY,
+    BRAINTREE_PRIVATE_KEY
+)
