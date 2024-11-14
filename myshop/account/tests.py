@@ -1,6 +1,11 @@
 from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+
+
+User = get_user_model()
+
 
 class AccountTests(TestCase):
 
@@ -34,3 +39,22 @@ class AccountTests(TestCase):
         })
         self.assertEqual(User.objects.count(), 2)  # El usuario de setUp + el nuevo usuario
         self.assertTemplateUsed(response, 'account/register_done.html')
+
+
+class UserTests(TestCase):
+
+    def test_create_user(self):
+        user = User.objects.create_user(
+            username='testuser',
+            password='password123'
+        )
+        self.assertEqual(user.username, 'testuser')
+        self.assertTrue(user.check_password('password123'))
+
+    def test_login_user(self):
+        user = User.objects.create_user(
+            username='testuser',
+            password='password123'
+        )
+        login = self.client.login(username='testuser', password='password123')
+        self.assertTrue(login)
