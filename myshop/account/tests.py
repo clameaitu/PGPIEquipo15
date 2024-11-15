@@ -20,7 +20,7 @@ class AccountTests(TestCase):
             'username': 'testuser',
             'password': 'testpassword123'
         })
-        self.assertRedirects(response, reverse('account:dashboard'))
+        self.assertRedirects(response, '/')
 
     def test_login_invalid_user(self):
         response = self.client.post(reverse('account:login'), {
