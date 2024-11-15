@@ -31,13 +31,13 @@
                 <form action="{% url "cart:cart_add" product.id %}" method="post">
                   {{ item.update_quantity_form.cantidad }}
                   {{ item.update_quantity_form.override }}
-                  <input type="submit" value="Update">
+                  <input type="submit" value="Confirmar">
                   {% csrf_token %}
                 </form>
             </td>
             <td>
               <form action="{% url "cart:cart_remove" product.id %}" method="post">
-                <input type="submit" value="Remove">
+                <input type="submit" value="Quitar">
                 {% csrf_token %}
               </form>
             </td>
@@ -57,7 +57,7 @@
     <a href="{% url "shop:product_list" %}" class="button
     light">Continuar comprando</a>
     <a href="{% url "orders:order_create" %}" class="button">
-      Checkout
+      Ir a caja
     </a>
   </p>
 {% endblock %}
