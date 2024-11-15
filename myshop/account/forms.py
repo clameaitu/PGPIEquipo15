@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 
 class LoginForm(forms.Form):
     email = forms.CharField()
-    password = forms.CharField(widget=forms.PasswordInput)
+    contraseña = forms.CharField(widget=forms.PasswordInput)
 
 class UserRegistrationForm(forms.ModelForm):
     password = forms.CharField(
@@ -11,7 +11,7 @@ class UserRegistrationForm(forms.ModelForm):
         widget=forms.PasswordInput
     )
     password2 = forms.CharField(
-        label='Repetir contraseñas',
+        label='Repetir contraseña',
         widget=forms.PasswordInput
     )
     class Meta:

@@ -1,14 +1,19 @@
 {% extends "shop/base.html" %}
-{% block title %}Iniciar sesión{% endblock %}
+{% block title %} Iniciar sesión {% endblock %}
+
 
 {% block content %}
+
   <h1>Iniciar sesión</h1>
+
   <p>Por favor, utiliza el siguiente formulario para iniciar sesión:
     Si no tienes una cuenta, <a href="{% url 'account:register' %}">regístrate aquí</a>.
   </p>
+
   <form method="post">
     {{ form.as_p }}
     {% csrf_token %}
-    <p><input type="submit" value="Iniciar sesión"></p>
+    <p> <input type="submit" value="Iniciar sesión"> </p>
   </form>
+
 {% endblock %}

@@ -12,16 +12,16 @@ def user_login(request):
             user = authenticate(
                 request,
                 email=cd['email'],
-                password=cd['password']
+                password=cd['contraseña']
             )
             if user is not None:
                 if user.is_active:
                     login(request, user)
                     return redirect('/')
                 else:
-                    return HttpResponse('Disabled account')
+                    return HttpResponse('Cuenta deshabilitada')
             else:
-                return HttpResponse('Invalid login')
+                return HttpResponse('Inicio de sesión incorrecto')
     else:
         form = LoginForm()
     return render(request, 'account/login.html', {'form': form})
