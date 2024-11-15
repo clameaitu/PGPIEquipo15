@@ -11,6 +11,7 @@ class Order(models.Model):
     ciudad = models.CharField(max_length=100)
     creado = models.DateTimeField(auto_now_add=True)
     actualizado = models.DateTimeField(auto_now=True)
+    entrega_en_oficina_de_correos = models.BooleanField(default=False)
     pagado = models.BooleanField(default=False)
     braintree_id = models.CharField(max_length=150, blank=True)
     
