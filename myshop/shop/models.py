@@ -10,8 +10,8 @@ class Category(models.Model):
                             unique=True)
     class Meta:
         ordering = ('nombre',)
-        verbose_name = 'categoria'
-        verbose_name_plural = 'categorias'
+        verbose_name = 'categoría'
+        verbose_name_plural = 'categorías'
     def __str__(self):
         return self.nombre
     def get_absolute_url(self):

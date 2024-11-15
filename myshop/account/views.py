@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .forms import LoginForm, UserRegistrationForm
 from django.contrib.auth.decorators import login_required
 
@@ -11,17 +11,17 @@ def user_login(request):
             cd = form.cleaned_data
             user = authenticate(
                 request,
-                username=cd['username'],
-                password=cd['password']
+                email=cd['email'],
+                password=cd['contraseña']
             )
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return HttpResponse('Authenticated successfully')
+                    return redirect('/')
                 else:
-                    return HttpResponse('Disabled account')
+                    return HttpResponse('Cuenta deshabilitada')
             else:
-                return HttpResponse('Invalid login')
+                return HttpResponse('Inicio de sesión incorrecto')
     else:
         form = LoginForm()
     return render(request, 'account/login.html', {'form': form})

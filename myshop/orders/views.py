@@ -13,9 +13,9 @@ def order_create(request):
             order = form.save()
             for item in cart:
                 OrderItem.objects.create(order=order,
-                                        product=item['product'],
-                                        price=item['price'],
-                                        quantity=item['quantity'])
+                                        producto=item['product'],
+                                        precio=item['price'],
+                                        cantidad=item['quantity'])
             # clear the cart
             cart.clear()
             # set the order in the session

@@ -12,20 +12,21 @@ class AccountTests(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(
             username='testuser',
+            email='testemail@gmail.com',
             password='testpassword123'
         )
 
     def test_login_valid_user(self):
         response = self.client.post(reverse('account:login'), {
-            'username': 'testuser',
-            'password': 'testpassword123'
+            'email': 'testemail@gmail.com',
+            'contraseña': 'testpassword123'
         })
-        self.assertRedirects(response, reverse('account:dashboard'))
+        self.assertRedirects(response, '/')
 
     def test_login_invalid_user(self):
         response = self.client.post(reverse('account:login'), {
-            'username': 'wronguser',
-            'password': 'wrongpassword'
+            'email': 'wrongemail@gmail.com',
+            'contraseña': 'wrongpassword'
         })
         self.assertEqual(response.status_code, 200)
 
