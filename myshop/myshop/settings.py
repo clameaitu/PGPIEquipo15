@@ -142,3 +142,7 @@ BRAINTREE_CONF = braintree.Configuration(
     BRAINTREE_PUBLIC_KEY,
     BRAINTREE_PRIVATE_KEY
 )
+
+
+# Login
+LOGIN_REDIRECT_URL = '/'
