@@ -146,3 +146,9 @@ BRAINTREE_CONF = braintree.Configuration(
 
 # Login
 LOGIN_REDIRECT_URL = '/'
+
+
+AUTHENTICATION_BACKENDS = [
+    'account.backends.EmailAuthBackend',  # Custom backend for email-based authentication
+    'django.contrib.auth.backends.ModelBackend',  # Default backend
+]

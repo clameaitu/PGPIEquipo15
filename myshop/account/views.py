@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .forms import LoginForm, UserRegistrationForm
 from django.contrib.auth.decorators import login_required
 
@@ -11,13 +11,13 @@ def user_login(request):
             cd = form.cleaned_data
             user = authenticate(
                 request,
-                username=cd['username'],
+                email=cd['email'],
                 password=cd['password']
             )
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return HttpResponse('Authenticated successfully')
+                    return redirect('/')
                 else:
                     return HttpResponse('Disabled account')
             else:
