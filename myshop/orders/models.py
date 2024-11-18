@@ -14,6 +14,10 @@ class Order(models.Model):
     entrega_en_oficina_de_correos = models.BooleanField(default=False)
     pagado = models.BooleanField(default=False)
     braintree_id = models.CharField(max_length=150, blank=True)
+
+    fecha_salida_almacen = models.DateTimeField(null=True, blank=True)
+    recibido_correctamente = models.BooleanField(default=False)
+    notas_seguimiento = models.TextField(blank=True)
     
     class Meta:
         ordering = ('-creado',)
