@@ -18,10 +18,17 @@ def order_create(request):
                                         cantidad=item['quantity'])
             # clear the cart
             cart.clear()
+            
             # set the order in the session
             request.session['order_id'] = order.id
+            
             # redirect for payment
-            return redirect(reverse('payment:process'))
+            action = request.POST.get('payment_action')
+            if action == "Pagar ahora":
+                return redirect(reverse('payment:process'))
+            elif action == "Pagar al recibir":
+                return redirect(reverse('payment:in_person'))
+            
     else:
         form = OrderCreateForm()
     return render(request,
