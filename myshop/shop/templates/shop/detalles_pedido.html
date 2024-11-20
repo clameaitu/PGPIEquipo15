@@ -1,0 +1,43 @@
+{% extends "shop/base.html" %}
+
+{% block title %}Detalles del Pedido{% endblock %}
+
+{% block content %}
+  <h1>Detalles del Pedido</h1>
+
+  <h3>Información del Pedido</h3>
+  <p><strong>Código de Pedido:</strong> {{ order.codigo }}</p>
+  <p><strong>Dirección:</strong> {{ order.dirección }}</p>
+  <p><strong>Código Postal:</strong> {{ order.código_postal }}</p>
+  <p><strong>Ciudad:</strong> {{ order.ciudad }}</p>
+  <p><strong>Fecha de Creación:</strong> {{ order.creado }}</p>
+  <p><strong>Fecha de Actualización:</strong> {{ order.actualizado }}</p>
+  <p><strong>Entrega en Oficina de Correos:</strong> {{ order.entrega_en_oficina_de_correos }}</p>
+  <p><strong>Pagado:</strong> {{ order.pagado }}</p>
+  <p><strong>Fecha de Salida al Almacén:</strong> {{ order.fecha_salida_almacen }}</p>
+  <p><strong>Recibido Correctamente:</strong> {{ order.recibido_correctamente }}</p>
+  <p><strong>Notas de Seguimiento:</strong> {{ order.notas_seguimiento }}</p>
+
+  <h3>Productos del Pedido</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Producto</th>
+        <th>Cantidad</th>
+        <th>Precio</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in items %}
+        <tr>
+          <td>{{ item.producto.nombre }}</td>
+          <td>{{ item.cantidad }}</td>
+          <td>{{ item.precio }} €</td>
+          <td>{{ item.total }} €</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}

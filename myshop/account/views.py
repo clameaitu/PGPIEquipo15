@@ -1,6 +1,8 @@
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
+from django.urls import reverse
+from orders.models import Order
 from .forms import LoginForm, UserRegistrationForm
 from django.contrib.auth.decorators import login_required
 
@@ -28,11 +30,24 @@ def user_login(request):
 
 @login_required
 def dashboard(request):
-    return render(
-        request,
-        'account/dashboard.html',
-        {'section': 'dashboard'}
-    )
+    codigo = request.GET.get('codigo', '')
+    order = None
+    mensaje_error = None
+
+    if codigo:
+        try:
+            # Verificar si el código existe
+            order = Order.objects.get(codigo=codigo)
+            # Redirigir a la página de detalles del pedido si el código es correcto
+            return redirect(reverse('orders:detalles_pedido', kwargs={'codigo': order.codigo}))
+        except Order.DoesNotExist:
+            # Si el código no existe, mostrar un mensaje de error
+            mensaje_error = "El código no es correcto, por favor, introduzca un código válido."
+
+    return render(request, 'account/dashboard.html', {
+        'mensaje_error': mensaje_error
+    })
+
 
 def register(request):
     if request.method == 'POST':

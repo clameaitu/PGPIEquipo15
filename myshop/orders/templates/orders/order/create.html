@@ -40,10 +40,10 @@
     {{ form.as_p }}
 
     <p style="display: inline-block; margin-right: 10px;">
-      <input type="submit"  value="Pagar ahora"  style="width: 155px;">
+      <input type="submit" name="payment_action"  value="Pagar ahora"  style="width: 155px;">
     </p>
     <p style="display: inline-block;">
-      <input type="submit"  value="Pagar al recibir"  style="width: 155px;">
+      <input type="submit" name="payment_action" value="Pagar al recibir"  style="width: 155px;">
     </p>
     
     {% csrf_token %}

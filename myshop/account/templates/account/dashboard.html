@@ -2,8 +2,21 @@
 
 {% block title %}Tu perfil{% endblock %}
 
-
 {% block content %}
   <h1>Perfil</h1>
   <p>Bienvenido a tu perfil.</p>
- {% endblock %}
+
+  <h2>Buscar Pedido</h2>
+
+  <!-- Mostrar mensaje de error si el código es incorrecto -->
+  {% if mensaje_error %}
+    <p style="color: red;">{{ mensaje_error }}</p>
+  {% endif %}
+
+  <form method="GET" action="{% url 'account:dashboard' %}">
+    <label for="codigo">Introduce tu código de pedido:</label>
+    <input type="text" id="codigo" name="codigo" maxlength="20" required pattern="[A-Za-z0-9]{20}" placeholder="Código de 20 caracteres" title="El código debe ser de 20 caracteres alfanuméricos">
+    <button type="submit">Seguir aquí</button>
+  </form>
+
+{% endblock %}
