@@ -5,41 +5,61 @@
     <meta charset="utf-8" />
     <title>{% block title %} My shop {% endblock %}</title>
     <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   </head>
   <body>
-    <div id="header">
+    <div id="header" class="header-container">
       <!-- Logo -->
       <a href="/" class="logo">LA SUPER TIENDA ESOTÉRICA</a>
-      
+
+      <!-- Categories in the center -->
+      <div class="categories-container">
+        <ul class="categories">
+          <li><a href="{% url 'shop:product_list' %}">TODO</a></li>
+          {% for c in categories %}
+            <li><a href="{{ c.get_absolute_url }}">{{ c.nombre|upper }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+
       <!-- Iconos a la derecha -->
       <div class="header-icons">
+        
+        <div class="search-container">
+          <form action="{% url 'shop:product_list' %}" method="get" class="search-form">
+              <input type="text" name="q" placeholder="Buscar..." id="search-input">
+              <button type="submit" class="submit-button">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+              </button>
+          </form>
+        </div>
+      
+      
+
         <!-- Icono de usuario / login -->
         <div class="user-icon">
           {% if request.user.is_authenticated %}
-            <a href="{% url 'account:dashboard' %}">
-              👤 Hola {{ request.user.first_name|default:request.user.username }}
+            <a href="{% url 'account:dashboard' %}" class="user-dashboard">
+              <i class="fa-solid fa-user"></i> Hola {{ request.user.first_name|default:request.user.username }}
             </a>
-            <form action="{% url 'account:logout' %}" method="post" class="logout-form">
-              {% csrf_token %}
-              <button type="submit">Cerrar sesión</button>
-            </form>
+            
           {% else %}
-            <a href="{% url 'account:login' %}">
-              👤 Iniciar sesión
+            <a href="{% url 'account:login' %}" class="login-link">
+              <i class="fa-solid fa-user"></i> Iniciar sesión
             </a>
           {% endif %}
-        </div>
+        </div>        
 
         <!-- Icono del carro -->
         <div class="cart-icon">
           {% with total_items=cart|length %}
             {% if total_items > 0 %}
               <a href="{% url 'cart:cart_detail' %}">
-                🛒 ({{ total_items }}) - ${{ cart.get_total_price }}
+                <i class="fa-solid fa-cart-shopping"></i> ({{ total_items }}) - ${{ cart.get_total_price }}
               </a>
             {% else %}
               <a href="{% url 'cart:cart_detail' %}">
-                🛒 Vacío
+                <i class="fa-solid fa-cart-shopping"></i> Vacío
               </a>
             {% endif %}
           {% endwith %}
