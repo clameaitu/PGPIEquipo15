@@ -1,6 +1,13 @@
 {% extends "shop/base.html" %}
-{% block title %}Payment successful{% endblock %}
+{% block title %}Pago completado{% endblock %}
 {% block content %}
-  <h1>Your payment was successful</h1>
-  <p>Your payment has been processed successfully.</p>
+  <h1>Pago completado</h1>
+  <p>Su pago ha sido procesado con éxito.</p>
+  <p>Los detalles sobre el pedido se han enviado a: <strong>{{ order.email }}</strong></p>
+  <p>Puede seguir el pedido con el código: <strong>{{ order.codigo }}</strong></p>
+  
+  <div>
+    <a href="/" class="btn btn-primary">Volver a la página de inicio</a>
+    <a href="/" class="btn btn-secondary">Mis pedidos</a>
+  </div>
 {% endblock %}
