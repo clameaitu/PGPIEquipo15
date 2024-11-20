@@ -12,3 +12,13 @@ class EmailService():
         msg = f'Subject: {subject}\n\n{message}'
         server.sendmail(self.sender, receiver, msg)
         server.quit()
+    
+    def build_msg(slef, order):
+        msg = (
+            f"Estimado {order.nombre},\n\n"
+            f"Su pedido con codigo {order.codigo} ha sido tramitado con exito.\n\n"
+            f"Para hacer un seguimiento de su pedido, puede introducir este codigo en nuestra pagina web.\n\n"
+            f"Gracias por su compra.\n\n"
+            f"Saludos cordiales,\nEl equipo de soporte"
+        )
+        return msg

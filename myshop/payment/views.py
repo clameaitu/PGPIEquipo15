@@ -3,7 +3,6 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.conf import settings
 from orders.models import Order
 from payment.email import EmailService
-import os
 
 #email = os.getenv('EMAIL')
 #password = os.getenv('EMAIL_PASS')
@@ -33,8 +32,8 @@ def payment_process(request):
             order.paid = True
             # store the unique transaction id
             order.braintree_id = result.transaction.id
-            email_service.send_mail(order.email, msg, "Verification Code")
             order.save()
+            email_service.send_mail(order.email, email_service.build_msg(order), "Compra Realizada")
             return redirect('payment:done')
         else:
             return redirect('payment:canceled')
