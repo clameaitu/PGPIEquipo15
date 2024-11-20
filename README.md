@@ -6,6 +6,10 @@ python -m venv venv             # para crearlo
 venv\Scripts\activate           # para activarlo (las barras hacia la izquierda)
 deactivate                      # para desactivarlo
 ```
+Si la ejecución de scripts está deshabilitada en el sistema, probar con el comando:
+```
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+```
 
 
 ### Para las dependencias:
