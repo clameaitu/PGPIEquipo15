@@ -8,42 +8,45 @@
   </head>
   <body>
     <div id="header">
-      <a href="/" class="logo"> LA SUPER TIENDA ESOTÉRICA </a>
-    </div>
-    <div id="subheader">
-      <div class="cart">
-        {% with total_items=cart|length %}
-          {% if total_items > 0 %}
-            Tu cesta:
-            <a href="{% url 'cart:cart_detail' %}">
-              {{ total_items }} item{{ total_items|pluralize }},
-              ${{ cart.get_total_price }}
+      <!-- Logo -->
+      <a href="/" class="logo">LA SUPER TIENDA ESOTÉRICA</a>
+      
+      <!-- Iconos a la derecha -->
+      <div class="header-icons">
+        <!-- Icono de usuario / login -->
+        <div class="user-icon">
+          {% if request.user.is_authenticated %}
+            <a href="{% url 'account:dashboard' %}">
+              👤 Hola {{ request.user.first_name|default:request.user.username }}
             </a>
+            <form action="{% url 'account:logout' %}" method="post" class="logout-form">
+              {% csrf_token %}
+              <button type="submit">Cerrar sesión</button>
+            </form>
           {% else %}
-            Tu cesta está vacía.
+            <a href="{% url 'account:login' %}">
+              👤 Iniciar sesión
+            </a>
           {% endif %}
-        {% endwith %}
+        </div>
+
+        <!-- Icono del carro -->
+        <div class="cart-icon">
+          {% with total_items=cart|length %}
+            {% if total_items > 0 %}
+              <a href="{% url 'cart:cart_detail' %}">
+                🛒 ({{ total_items }}) - ${{ cart.get_total_price }}
+              </a>
+            {% else %}
+              <a href="{% url 'cart:cart_detail' %}">
+                🛒 Vacío
+              </a>
+            {% endif %}
+          {% endwith %}
+        </div>
       </div>
-      {% if request.user.is_authenticated %}
-      <ul class="menu">
-        <li {% if section == "dashboard" %}class="selected"{% endif %}>
-          <a href="{% url 'account:dashboard' %}">Mi perfil</a>
-        </li>
-        
-      </ul>
-      {% endif %}
-      <span class="user">
-        {% if request.user.is_authenticated %}
-          Hola {{ request.user.first_name|default:request.user.username }},
-          <form action="{% url 'account:logout' %}" method="post">
-            <button type="submit">Cerrar sesión</button>
-            {% csrf_token %}
-          </form>
-        {% else %}
-          <a href="{% url 'account:login' %}">Iniciar sesión</a>
-        {% endif %}
-      </span>
     </div>
+
     <div id="content">
       {% block content %}
       {% endblock %}
