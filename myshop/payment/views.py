@@ -2,11 +2,15 @@ import braintree
 from django.shortcuts import render, redirect, get_object_or_404
 from django.conf import settings
 from orders.models import Order
+from payment.email import EmailService
 
+#email = os.getenv('EMAIL')
+#password = os.getenv('EMAIL_PASS')
+email_service = EmailService("esotericagrupo15@gmail.com", "rfeu bnhl blpe gdai")
 
 # instantiate Braintree payment gateway
 gateway = braintree.BraintreeGateway(settings.BRAINTREE_CONF)
-
+msg = "Prueba"
 
 def payment_process(request):
     order_id = request.session.get('order_id')
@@ -29,6 +33,7 @@ def payment_process(request):
             # store the unique transaction id
             order.braintree_id = result.transaction.id
             order.save()
+            email_service.send_mail(order.email, email_service.build_msg(order), "Compra Realizada")
             return redirect('payment:done')
         else:
             return redirect('payment:canceled')
