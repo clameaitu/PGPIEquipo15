@@ -1,8 +1,11 @@
+import string
 from django.db import models
 from shop.models import Product
+import random
 
 
 class Order(models.Model):
+    codigo = models.CharField(max_length=20, unique=True, blank=True, null=True)
     nombre = models.CharField(max_length=50)
     apellidos = models.CharField(max_length=50)
     email = models.EmailField()
@@ -18,6 +21,11 @@ class Order(models.Model):
     fecha_salida_almacen = models.DateTimeField(null=True, blank=True)
     recibido_correctamente = models.BooleanField(default=False)
     notas_seguimiento = models.TextField(blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.codigo:
+            self.codigo = ''.join(random.choices(string.ascii_letters + string.digits, k=20))
+        super().save(*args, **kwargs)
     
     class Meta:
         ordering = ('-creado',)
