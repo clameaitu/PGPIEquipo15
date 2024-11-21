@@ -1,3 +1,4 @@
+from unicodedata import category
 from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Q
 from .models import Category, Product
@@ -31,6 +32,7 @@ def search_view(request):
     form = SearchForm()
     results = []
     query = ''
+    categories = Category.objects.all() 
 
     if 'query' in request.GET:
         form = SearchForm(request.GET)
@@ -48,5 +50,6 @@ def search_view(request):
     return render(request, 'shop/product/search.html', {
         'form': form,
         'query': query,
-        'results': results
+        'results': results,
+        'categories': categories
     })

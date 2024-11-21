@@ -12,7 +12,7 @@
     <h3>Buscar productos</h3>
     <form method="get" action="{% url 'shop:search' %}">
       {% csrf_token %}
-      <input type="text" name="query" placeholder="Buscar productos...">
+      <input type="text" name="query" placeholder="Buscar productos..." value="{{ query }}">
       <input type="submit" value="Buscar">
     </form>
     
@@ -27,7 +27,6 @@
         </li>
       {% endfor %}
     </ul>
-
     
   </div>
 

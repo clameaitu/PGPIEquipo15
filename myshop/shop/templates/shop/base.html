@@ -24,16 +24,15 @@
 
       <!-- Iconos a la derecha -->
       <div class="header-icons">
-        
+
         <div class="search-container">
-          <form action="{% url 'shop:product_list' %}" method="get" class="search-form">
-              <input type="text" name="q" placeholder="Buscar..." id="search-input">
-              <button type="submit" class="submit-button">
-                  <i class="fa-solid fa-magnifying-glass"></i>
-              </button>
+          <form method="get" action="{% url 'shop:search' %}">
+            <input type="text" name="query" placeholder="Buscar productos..." value="{{ request.GET.query }}">
+            <button type="submit" class="submit-button">
+              <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
           </form>
         </div>
-      
       
 
         <!-- Icono de usuario / login -->

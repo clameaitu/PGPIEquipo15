@@ -1,9 +1,10 @@
 @import url(//fonts.googleapis.com/css?family=Ubuntu);
 
-body {
+html, body {
     margin:0;
     padding:0;
     font-family:helvetica, sans-serif;
+    width: 100%;
 }
 
 h1, h2, h3, h4, h5 , h6 {
@@ -136,7 +137,7 @@ ul.errorlist {
 }
 
 #content {
-    padding:0 100px;
+    padding:0 0px;
     overflow:hidden;
 }
 
@@ -172,8 +173,8 @@ ul.errorlist {
 
 #main {
     float:left;
-    width: 96%;
-    margin-right:-220px;
+    width: 100%;
+    /* margin-right:-220px; */
     overflow:hidden;
 }
 
@@ -454,7 +455,7 @@ form div.field {
     border: none;
     cursor: pointer;
     color: #ea899a;
-    font-size: 20px;
+    font-size: 17px;
     padding-left: 10px;
 }
 
@@ -462,3 +463,22 @@ form div.field {
     outline: none; /* Quitar el borde al hacer focus */
 }
 
+.banner {
+    width: 100%; /* Asegura que use todo el ancho de la ventana */
+    background-color: #f8f9fa;
+    text-align: center;
+    padding: 20px 0; /* Añade espacio arriba y abajo si es necesario */
+    margin: 0; /* Elimina cualquier margen */
+    padding: 0;
+}
+  
+.banner-img {
+    width: 100%;  /* Hace que la imagen ocupe el 100% del ancho */
+    height: auto;
+    max-width: 2000px;  /* Limita el tamaño máximo de la imagen */
+    margin: 0 auto;  /* Centra la imagen */
+    display: block;
+}
+.banner h1 {
+    margin: 0;
+}

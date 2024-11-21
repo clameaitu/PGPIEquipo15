@@ -6,31 +6,9 @@
 {% endblock %}
 
 {% block content %}
-  <div id="sidebar">
 
-    <!-- Formulario de búsqueda -->
-    <h3>Buscar productos</h3>
-    <form method="get" action="{% url 'shop:search' %}">
-      {% csrf_token %}
-      <input type="text" name="query" placeholder="Buscar productos...">
-      <input type="submit" value="Buscar">
-    </form>
-  
-    
-    <h3>Categorías</h3>
-    <ul>
-      <li {% if not category %}class="selected"{% endif %}>
-        <a href="{% url "shop:product_list" %}"> Todo </a>
-      </li>
-      {% for c in categories %}
-        <li {% if category.slug == c.slug %} class="selected" {% endif %}>
-          <a href="{{ c.get_absolute_url }}">{{ c.nombre }}</a>
-        </li>
-      {% endfor %}
-    </ul>
-
-    <!-- Formulario de búsqueda -->
-    
+  <div class="banner">
+    <img src="{% static 'img/banner.jpg' %}" alt="La Super Tienda Esotérica" class="banner-img">
   </div>
 
   <div id="main" class="product-list">
