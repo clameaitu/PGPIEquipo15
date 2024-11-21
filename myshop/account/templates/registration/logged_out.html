@@ -1,9 +1,11 @@
 {% extends "shop/base.html" %}
 {% block title %}Sesión cerrada{% endblock %}
 {% block content %}
-  <h1>Sesión cerrada</h1>
-  <p>
-    Has cerrado sesión correctamente.
-    Puedes <a href="{% url 'account:login' %}">iniciar sesión nuevamente</a>.
+  <h1 style="margin-left: 25px;">Sesión cerrada</h1>
+  <p style="margin-left: 25px;">
+    Su sesión ha sido cerrada correctamente.
+  </p>
+  <p style="margin-left: 25px;">
+    Puede iniciar sesión nuevamente en <a href="{% url 'account:login' %}">este enlace</a>
   </p>
 {% endblock %}

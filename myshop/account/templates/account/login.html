@@ -1,19 +1,19 @@
 {% extends "shop/base.html" %}
-{% block title %} Iniciar sesión {% endblock %}
-
-
+{% block title %}Iniciar sesión{% endblock %}
 {% block content %}
+  <div style="margin-left: 25px;">
+    <h1>Iniciar sesión</h1>
+      <p>Por favor, utiliza el siguiente formulario para iniciar sesión.</p>
+      <p>Si no tienes una cuenta. <a href="{% url 'account:register' %}">regístrate aquí</a></p>
 
-  <h1>Iniciar sesión</h1>
-
-  <p>Por favor, utiliza el siguiente formulario para iniciar sesión:
-    Si no tienes una cuenta, <a href="{% url 'account:register' %}">regístrate aquí</a>.
-  </p>
-
-  <form method="post">
-    {{ form.as_p }}
-    {% csrf_token %}
-    <p> <input type="submit" value="Iniciar sesión"> </p>
-  </form>
-
+    <div class="login-form">
+      <form action="{% url 'account:login' %}" method="post">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ next }}" />
+        <p><input type="submit" value="Iniciar sesión"></p>
+      </form>
+    </div>
+  </div>
 {% endblock %}
+
