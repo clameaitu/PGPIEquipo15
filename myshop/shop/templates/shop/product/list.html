@@ -11,23 +11,24 @@
     <img src="{% static 'img/banner.jpg' %}" alt="La Super Tienda Esotérica" class="banner-img">
   </div>
 
-  <div id="main" class="product-list">
-    <h1> {% if category %} {{ category.nombre }} {% else %} Productos {% endif %} </h1>
-    {% for product in products %}
-      <div class="item">
-        <a href="{{ product.get_absolute_url }}">
-          <img src="{% if product.imagen %} {{ product.imagen.url }} {% else %} {% static "img/no_image.png" %} {% endif %}">
-        </a>
-        <a href="{{ product.get_absolute_url }}">{{ product.nombre }}</a>
-        <br>
-        {% if not product.disponible %}
-          <span style="text-decoration: line-through; color: gray;">${{ product.precio }}</span>
-          <span style="color: red; font-weight: bold;">Agotado</span>
-        {% else %}
-          ${{ product.precio }}
-        {% endif %}
-      </div>
-    {% endfor %}
-  </div>
-  
+ <!-- list.html -->
+<div id="main" class="product-list">
+  <h1> {% if category %} {{ category.nombre }} {% else %} Productos {% endif %} </h1>
+  {% for product in products %}
+    <div class="item">
+      <a href="{{ product.get_absolute_url }}">
+        <img src="{% if product.imagen %} {{ product.imagen.url }} {% else %} {% static 'img/no_image.png' %} {% endif %}">
+      </a>
+      <a href="{{ product.get_absolute_url }}">{{ product.nombre }}</a>
+      <br>
+      {% if not product.disponible %}
+        <span style="text-decoration: line-through; color: gray;">${{ product.precio }}</span>
+        <span style="color: grey; font-weight: bold;">Agotado</span>
+      {% else %}
+        ${{ product.precio }}
+      {% endif %}
+    </div>
+  {% endfor %}
+</div>
+
 {% endblock %}
