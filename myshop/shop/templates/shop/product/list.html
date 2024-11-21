@@ -29,22 +29,5 @@
       </div>
     {% endfor %}
   </div>
-
-          <!-- Formulario para seguir el pedido -->
-          <h2>¿Tienes un código de pedido?</h2>
-          <p>Introduce tu código de pedido para ver los detalles del mismo:</p>
-          
-          <form method="GET" action="{% url 'orders:buscar_pedido' %}">
-            <label for="codigo">Código de pedido (20 caracteres):</label>
-            <input type="text" id="codigo" name="codigo" maxlength="20" required pattern="[A-Za-z0-9]{20}" placeholder="Código de 20 caracteres" title="El código debe ser de 20 caracteres alfanuméricos">
-            <button type="submit">Seguir aquí</button>
-          </form>          
-  
-          <!-- Mostrar mensaje de error si el código no es válido -->
-          {% if mensaje_error %}
-            <div class="error-message" style="color: red; font-weight: bold;">
-              {{ mensaje_error }}
-            </div>
-          {% endif %}
   
 {% endblock %}

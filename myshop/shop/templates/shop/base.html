@@ -65,10 +65,26 @@
         </div>
       </div>
     </div>
-
     <div id="content">
       {% block content %}
       {% endblock %}
     </div>
+    <!-- Footer -->
+    <footer id="footer" class="footer-container">
+      <div class="pedido-form-inline">
+        <span>¿Tienes un código de pedido? Introduce tu código para ver los detalles:</span>
+        <form method="GET" action="{% url 'orders:buscar_pedido' %}">
+          <input type="text" id="codigo" name="codigo" maxlength="20" required pattern="[A-Za-z0-9]{20}" 
+                placeholder="Código de 20 caracteres" title="El código debe ser de 20 caracteres alfanuméricos">
+          <button type="submit">Seguir aquí</button>
+        </form>
+      </div>
+      {% if mensaje_error %}
+        <div class="error-message">
+          {{ mensaje_error }}
+        </div>
+      {% endif %}
+    </footer>
+
   </body>
 </html>

@@ -369,7 +369,7 @@ form div.field {
     align-items: left; /* Centrar verticalmente */
     padding: 10px 10px;
     background-color: #f8f9fa;
-    padding-left: 20px;
+    /* padding-left: 20px; */
 }
 
 .categories-container {
@@ -482,3 +482,56 @@ form div.field {
 .banner h1 {
     margin: 0;
 }
+
+/* Footer */
+.footer-container {
+    background-color: #f8f9fa;
+    padding: 20px;
+    text-align: center;
+}
+  
+.pedido-form-inline {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+}
+  
+.pedido-form-inline form {
+    display: flex;
+    align-items: left;
+    gap: 10px;
+}
+  
+.pedido-form-inline input[type="text"] {
+    width: 300px;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+  
+.pedido-form-inline button {
+    padding: 10px 15px;
+    background-color: #ea899a;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+  
+.pedido-form-inline button:hover {
+    background-color: #f67d92;
+}
+  
+.error-message {
+    margin-top: 10px;
+    color: red;
+    font-weight: bold;
+    display: flex;
+    align-items: left;
+    gap: 10px;
+}
+  
