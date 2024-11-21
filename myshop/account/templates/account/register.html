@@ -4,11 +4,11 @@
 
 {% block content %}
 
-  <h1>Crear una cuenta</h1>
+  <h1 style="margin-left: 25px;">Crear una cuenta</h1>
 
-  <p>Por favor, regístrate utilizando el siguiente formulario:</p>
+  <p style="margin-left: 25px;">Por favor, regístrate utilizando el siguiente formulario:</p>
 
-  <form method="post">
+  <form method="post" style="margin-left: 25px;">
     {{ user_form.as_p }}
     {% csrf_token %}
     <p> <input type="submit" value="Crear mi cuenta"> </p>
