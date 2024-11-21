@@ -2,27 +2,33 @@
 {% load static %}
 
 {% block title %}
-  Resultados de búsqueda
+  {% if category %}
+    {{ category.nombre }}  <!-- Mostrar el nombre de la categoría -->
+  {% else %}
+    Resultados de búsqueda
+  {% endif %}
 {% endblock %}
 
 {% block content %}
   <div id="sidebar">
-    
     <!-- Formulario de búsqueda -->
     <h3>Buscar productos</h3>
-    <form method="get" action="{% url 'shop:search' %}">
-      {% csrf_token %}
-      <input type="text" name="query" placeholder="Buscar productos..." value="{{ query }}">
-      <input type="submit" value="Buscar">
-    </form>
-    
+    <div class="search-container">
+      <form method="get" action="{% url 'shop:search' %}">
+        <input type="text" name="query" placeholder="Buscar productos..." value="{{ request.GET.query }}">
+        <button type="submit" class="submit-button">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </form>
+    </div>
+
     <h3>Categorías</h3>
     <ul>
       <li {% if not category %}class="selected"{% endif %}>
-        <a href="{% url 'shop:product_list' %}"> Todo </a>
+        <a href="{% url 'shop:product_list' %}">Todo</a>
       </li>
       {% for c in categories %}
-        <li {% if category.slug == c.slug %} class="selected" {% endif %}>
+        <li {% if category and category.slug == c.slug %}class="selected"{% endif %}>
           <a href="{{ c.get_absolute_url }}">{{ c.nombre }}</a>
         </li>
       {% endfor %}
@@ -30,8 +36,12 @@
     
   </div>
 
-  <div id="main" class="product-list">
-    <h1>Resultados de búsqueda para: "{{ query }}"</h1>
+  <div id="search" class="product-list">
+    {% if category %}
+      <h1>{{ category.nombre }}</h1>  <!-- Mostrar el nombre de la categoría -->
+    {% else %}
+      <h1>Resultados de búsqueda para: "{{ query }}"</h1>
+    {% endif %}
 
     {% if results %}
       {% for product in results %}
@@ -43,14 +53,18 @@
           <br>
           {% if not product.disponible %}
             <span style="text-decoration: line-through; color: gray;">${{ product.precio }}</span>
-            <span style="color: red; font-weight: bold;">Agotado</span>
+            <span style="color: grey; font-weight: bold;">Agotado</span>
           {% else %}
             ${{ product.precio }}
           {% endif %}
         </div>
       {% endfor %}
     {% else %}
-      <p>No se encontraron productos para "{{ query }}".</p>
+      {% if category %}
+        <p></p>
+      {% else %}
+        <p>No se encontraron productos para "{{ query }}".</p>
+      {% endif %}
     {% endif %}
   </div>
 {% endblock %}
