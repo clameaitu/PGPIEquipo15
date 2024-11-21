@@ -5,48 +5,86 @@
     <meta charset="utf-8" />
     <title>{% block title %} My shop {% endblock %}</title>
     <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   </head>
   <body>
-    <div id="header">
-      <a href="/" class="logo"> LA SUPER TIENDA ESOTÉRICA </a>
-      {% if request.user.is_authenticated %}
-      <ul class="menu">
-        <li {% if section == "dashboard" %}class="selected"{% endif %}>
-          <a href="{% url 'account:dashboard' %}">Mi perfil</a>
-        </li>
-        
-      </ul>
-      {% endif %}
-      <span class="user">
-        {% if request.user.is_authenticated %}
-          Hola {{ request.user.first_name|default:request.user.username }},
-          <form action="{% url 'account:logout' %}" method="post">
-            <button type="submit">Cerrar sesión</button>
-            {% csrf_token %}
+    <div id="header" class="header-container">
+      <!-- Logo -->
+      <a href="/" class="logo">LA SUPER TIENDA ESOTÉRICA</a>
+
+      <!-- Categories in the center -->
+      <div class="categories-container">
+        <ul class="categories">
+          <li><a href="{% url 'shop:product_list' %}">TODO</a></li>
+          {% for c in categories %}
+            <li><a href="{{ c.get_absolute_url }}">{{ c.nombre|upper }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <!-- Iconos a la derecha -->
+      <div class="header-icons">
+
+        <div class="search-container">
+          <form method="get" action="{% url 'shop:search' %}">
+            <input type="text" name="query" placeholder="Buscar productos..." value="{{ request.GET.query }}">
+            <button type="submit" class="submit-button">
+              <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
           </form>
-        {% else %}
-          <a href="{% url 'account:login' %}">Iniciar sesión</a>
-        {% endif %}
-      </span>
-    </div>
-    <div id="subheader">
-      <div class="cart">
-        {% with total_items=cart|length %}
-          {% if total_items > 0 %}
-            Tu cesta:
-            <a href="{% url 'cart:cart_detail' %}">
-              {{ total_items }} item{{ total_items|pluralize }},
-              ${{ cart.get_total_price }}
+        </div>
+      
+
+        <!-- Icono de usuario / login -->
+        <div class="user-icon">
+          {% if request.user.is_authenticated %}
+            <a href="{% url 'account:dashboard' %}" class="user-dashboard">
+              <i class="fa-solid fa-user"></i> Hola {{ request.user.first_name|default:request.user.username }}
             </a>
+            
           {% else %}
-            Tu cesta está vacía.
+            <a href="{% url 'account:login' %}" class="login-link">
+              <i class="fa-solid fa-user"></i> Iniciar sesión
+            </a>
           {% endif %}
-        {% endwith %}
+        </div>        
+
+        <!-- Icono del carro -->
+        <div class="cart-icon">
+          {% with total_items=cart|length %}
+            {% if total_items > 0 %}
+              <a href="{% url 'cart:cart_detail' %}">
+                <i class="fa-solid fa-cart-shopping"></i> ({{ total_items }}) - ${{ cart.get_total_price }}
+              </a>
+            {% else %}
+              <a href="{% url 'cart:cart_detail' %}">
+                <i class="fa-solid fa-cart-shopping"></i> Vacío
+              </a>
+            {% endif %}
+          {% endwith %}
+        </div>
       </div>
     </div>
     <div id="content">
       {% block content %}
       {% endblock %}
     </div>
+    <!-- Footer -->
+    <footer id="footer" class="footer-container">
+      <div class="pedido-form-inline">
+        <span>¿Tienes un código de pedido? Introduce tu código para ver los detalles:</span>
+        <form method="GET" action="{% url 'orders:buscar_pedido' %}">
+          <input type="text" id="codigo" name="codigo" maxlength="20" required pattern="[A-Za-z0-9]{20}" 
+                placeholder="Código de 20 caracteres" title="El código debe ser de 20 caracteres alfanuméricos">
+          <button type="submit">Seguir aquí</button>
+        </form>
+      </div>
+      {% if mensaje_error %}
+        <div class="error-message">
+          {{ mensaje_error }}
+        </div>
+      {% endif %}
+    </footer>
+
   </body>
 </html>
