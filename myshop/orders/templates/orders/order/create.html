@@ -6,9 +6,9 @@
 
 {% block content %}
 
-  <h1> Introduce tus datos </h1>
+<h1 style="margin-left: 25px;" >Introduzca sus Datos</h1>
 
-  <div class="order-info">
+  <div class="order-info", style="margin-right: 20px;">
     <h3> Tu pedido </h3>
 
     <ul>
@@ -36,7 +36,7 @@
     <p>Total: ${{ cart.get_total_price }}</p>
   </div>
 
-  <form method="post" class="order-form">
+  <form method="post" class="order-form", style="margin-left: 25px">
     {{ form.as_p }}
 
     <p style="display: inline-block; margin-right: 10px;">

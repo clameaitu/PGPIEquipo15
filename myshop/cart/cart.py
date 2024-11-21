@@ -65,7 +65,10 @@ class Cart(object):
         return sum(item['quantity'] for item in self.cart.values())
     
     def get_total_price(self):
-        total_price = sum(Decimal(item['price']) * item['quantity'] for item in self.cart.values())
+        if not self.cart:
+            return Decimal(0) # si el carrito está vacio, devolver 0
+        
+        total_price = sum(Decimal(item['price']) * item['quantity'] for item in self.cart.values()) # si el precio es menor a 50, añadir gastos de envio
         GASTOS_DE_ENVÍO = 7
         if (total_price < 50): total_price += GASTOS_DE_ENVÍO
         return total_price
