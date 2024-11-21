@@ -4,7 +4,8 @@
   Your shopping cart
 {% endblock %}
 {% block content %}
-  <h1>Tu cesta de compra</h1>
+  <h1 style="margin-left: 35px;" >Tu cesta de compra</h1>
+  {% if cart %}
   <table class="cart">
     <thead>
       <tr>
@@ -59,5 +60,14 @@
     <a href="{% url "orders:order_create" %}" class="button">
       Ir a caja
     </a>
-  </p>
+    {% else %}
+    <div class="empty-cart-wrapper" style="margin-left: 40px;"> 
+      <div class="empty-cart text-center">
+        <p class="alert alert-info">
+          Tu carrito de la compra está vacío. ¿Por qué no lo rellenas con unas compras?
+        </p>
+        <a href="{% url 'shop:product_list' %}" class="btn btn-primary">Continuar comprando</a>
+      </div>
+    </div>
+  {% endif %}  
 {% endblock %}
