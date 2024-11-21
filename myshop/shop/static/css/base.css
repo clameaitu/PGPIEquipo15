@@ -559,7 +559,7 @@ form div.field {
 }
 
 
-#search.product-list {
+#search.products-list {
     margin-left: 30px; 
     margin-right: 30px; 
     padding: 20px;      /* Puedes añadir también algo de padding */
@@ -567,7 +567,7 @@ form div.field {
     gap: 20px; /* Espacio entre productos */
 }
 
-.product-list h1 {
+.products-list h1 {
     font-size: 32px; /* Tamaño de fuente */
     font-weight: normal; /* Negrita para el título */
     margin-bottom: 10px; /* Espaciado debajo del título */
@@ -578,7 +578,7 @@ form div.field {
     margin-left: 220px;
 }
 
-.product-list .item {
+.products-list .item {
     width:22%;
     padding:10px 20px 10px 0;
     margin-bottom: 20px;
@@ -589,32 +589,32 @@ form div.field {
     box-sizing: border-box;
 }
 
-.product-list .item img {
+.products-list .item img {
     width:100%;
     margin-bottom:8px;
     margin-right: 40px; 
 }
 
-.product-detail {
+.products-detail {
     text-align:justify;
 }
 
-.product-detail .price {
+.products-detail .price {
     color:#333;
     font-size:28px;
     font-weight:bold;
 }
 
-.product-detail img {
+.products-detail img {
     width:40%;
     float:left;
     padding:0 20px 20px 0;
 }
 
-.product-detail h1 {
+.products-detail h1 {
     margin-bottom:0;
 }
 
-.product-detail h2 {
+.products-detail h2 {
     margin-top:10px;
 }
