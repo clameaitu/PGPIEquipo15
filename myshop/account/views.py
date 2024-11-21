@@ -3,10 +3,12 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from orders.models import Order
+from shop.models import Category
 from .forms import LoginForm, UserRegistrationForm
 from django.contrib.auth.decorators import login_required
 
 def user_login(request):
+    categories = Category.objects.all()
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -26,10 +28,11 @@ def user_login(request):
                 return HttpResponse('Inicio de sesión incorrecto')
     else:
         form = LoginForm()
-    return render(request, 'account/login.html', {'form': form})
+    return render(request, 'account/login.html', {'form': form, 'categories': categories,})
 
 @login_required
 def dashboard(request):
+    categories = Category.objects.all()
     codigo = request.GET.get('codigo', '')
     order = None
     mensaje_error = None
@@ -45,11 +48,12 @@ def dashboard(request):
             mensaje_error = "El código no es correcto, por favor, introduzca un código válido."
 
     return render(request, 'account/dashboard.html', {
-        'mensaje_error': mensaje_error
+        'mensaje_error': mensaje_error, 'categories': categories,
     })
 
 
 def register(request):
+    categories = Category.objects.all()
     if request.method == 'POST':
         user_form = UserRegistrationForm(request.POST)
         if user_form.is_valid():
@@ -64,12 +68,12 @@ def register(request):
             return render(
                request,
                'account/register_done.html',
-               {'new_user': new_user}
+               {'new_user': new_user, 'categories': categories,}
            )
     else:
         user_form = UserRegistrationForm()
     return render(
         request,
         'account/register.html',
-        {'user_form': user_form}
+        {'user_form': user_form, 'categories': categories,}
     )
