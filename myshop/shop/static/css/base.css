@@ -139,6 +139,7 @@ ul.errorlist {
 #content {
     padding:0 0px;
     overflow:hidden;
+    min-height: calc(100vh - 120px); 
 }
 
 #sidebar {
@@ -508,6 +509,7 @@ form div.field {
 
 /* Footer */
 .footer-container {
+    
     background-color: #f8f9fa;
     padding: 20px;
     text-align: center;
