@@ -9,15 +9,10 @@
   <div class="product-detail">
     <img src="{% if product.imagen %} {{ product.imagen.url }} {% else %} {% static "img/no_image.png" %}{% endif %}">
     <h1>{{ product.nombre }}</h1>
-    <h2>
-      <a href="{{ product.category.get_absolute_url }}">
-        {{ product.categoria }}
-      </a>
-    </h2>
     <p class="price">
       {% if not product.disponible %}
           <span style="text-decoration: line-through; color: gray;">${{ product.precio }}</span>
-          <span style="color: red; font-weight: bold;">Agotado</span>
+          <span style="color: gray; font-weight: bold;">Agotado</span>
         {% else %}
           ${{ product.precio }}
         {% endif %}
@@ -27,9 +22,13 @@
       {% if product.disponible %}
       {{ cart_product_form }}
       {% csrf_token %}
-      <input type="submit" value="Añadir a la cesta">
+      <div class="add-to-cart-wrapper">
+        <input type="submit" value="Añadir a la cesta" class="add-to-cart">
+      </div>
       {% endif %}
     </form>
-    {{ product.descripcion|linebreaks }}
+    <h3>Descripción</h3>
+        <p><strong>Categoría:</strong> {{ product.categoria }}</p>
+        <p>{{ product.descripcion|linebreaks }}</p>
   </div>
 {% endblock %}

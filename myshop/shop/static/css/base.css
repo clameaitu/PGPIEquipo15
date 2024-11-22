@@ -139,6 +139,7 @@ ul.errorlist {
 #content {
     padding:0 0px;
     overflow:hidden;
+    min-height: calc(100vh - 120px); 
 }
 
 #sidebar {
@@ -508,6 +509,7 @@ form div.field {
 
 /* Footer */
 .footer-container {
+    
     background-color: #f8f9fa;
     padding: 20px;
     text-align: center;
@@ -618,3 +620,103 @@ form div.field {
 .products-detail h2 {
     margin-top:10px;
 }
+
+/* General product detail styles */
+/* General product detail styles */
+.detail-product {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+  
+.product-info-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+  
+.product-image {
+    flex: 1;
+    margin-right: 20px;
+}
+  
+.product-image img {
+    width: 100%;
+    max-width: 400px; /* Ajusta el tamaño de la imagen */
+    height: auto;
+    border-radius: 5px;
+}
+  
+.product-details {
+    flex: 2;
+    max-width: 600px;
+    text-align: left;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+  
+.product-details h1 {
+    font-size: 28px;
+    color: #333;
+}
+    
+.product-details .price {
+    font-size: 24px;
+    color: gray;
+    margin: 10px 0;
+}
+  
+.quantity-wrapper {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+  
+.quantity-input {
+    width: 60px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+}
+  
+.add-to-cart-wrapper {
+    text-align: left;
+
+}
+  
+.add-to-cart {
+    background-color: #ea899a;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    margin-top: 15px;
+}
+  
+.add-to-cart:hover {
+    background-color: #c52d3b;
+}
+  
+.detail-product h3 {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #333;
+    text-decoration: underline;
+}
+  
+.detail-product p {
+    font-size: 16px;
+    color: #555;
+    text-align: left;
+    margin-bottom: 4px;
+}
+  

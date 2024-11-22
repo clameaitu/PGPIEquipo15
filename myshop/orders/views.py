@@ -10,6 +10,7 @@ from django.http import Http404
 
 
 def order_create(request):
+    categories = Category.objects.all()
     cart = Cart(request)
     if request.method == 'POST':
         form = OrderCreateForm(request.POST)
@@ -37,7 +38,7 @@ def order_create(request):
         form = OrderCreateForm()
     return render(request,
                   'orders/order/create.html',
-                  {'cart': cart, 'form': form})
+                  {'cart': cart,'categories': categories, 'form': form})
 
 
 def buscar_pedido(request):

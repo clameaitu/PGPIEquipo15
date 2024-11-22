@@ -28,7 +28,7 @@ def user_login(request):
                 return HttpResponse('Inicio de sesión incorrecto')
     else:
         form = LoginForm()
-    return render(request, 'account/login.html', {'form': form, 'categories': categories,})
+    return render(request, 'account/login.html', {'form': form, 'categories': categories})
 
 @login_required
 def dashboard(request):
