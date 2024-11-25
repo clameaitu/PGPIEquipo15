@@ -6,6 +6,13 @@ class LoginForm(forms.Form):
     contraseña = forms.CharField(widget=forms.PasswordInput)
 
 class UserRegistrationForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(UserRegistrationForm, self).__init__(*args, **kwargs)
+
+        for fieldname in ['username', 'password', 'password2']:
+            self.fields[fieldname].help_text = None
+            
     password = forms.CharField(
         label='Contraseña',
         widget=forms.PasswordInput
