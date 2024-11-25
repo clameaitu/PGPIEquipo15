@@ -3,30 +3,34 @@
 {% block title %}Tu perfil{% endblock %}
 
 {% block content %}
-  <h1>Perfil</h1>
-  <p>Bienvenido a tu perfil.</p>
+  <div style="display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f8d0d6;">
+    <div style="padding: 20px; background-color: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); width: 100%; max-width: 500px; text-align: center;">
+      
+      <h1>Perfil</h1>
+      <p>Bienvenido a tu perfil.</p>
 
-  <h2>Buscar Pedido</h2>
+      <h2>Buscar Pedido</h2>
 
-  <!-- Mostrar mensaje de error si el código es incorrecto -->
-  {% if mensaje_error %}
-    <p style="color: red;">{{ mensaje_error }}</p>
-  {% endif %}
+      <!-- Mostrar mensaje de error si el código es incorrecto -->
+      {% if mensaje_error %}
+        <p style="color: red; font-weight: bold;">{{ mensaje_error }}</p>
+      {% endif %}
 
-  <form method="GET" action="{% url 'account:dashboard' %}">
-    <label for="codigo">Introduce tu código de pedido:</label>
-    <input type="text" id="codigo" name="codigo" maxlength="20" required pattern="[A-Za-z0-9]{20}" placeholder="Código de 20 caracteres" title="El código debe ser de 20 caracteres alfanuméricos">
-    <button type="submit">Seguir aquí</button>
-  </form>
+      <form method="GET" action="{% url 'account:dashboard' %}" style="margin-bottom: 20px;">
+        <label for="codigo" style="display: block; margin-bottom: 5px;">Introduce tu código de pedido:</label>
+        <input type="text" id="codigo" name="codigo" maxlength="20" required pattern="[A-Za-z0-9]{20}" placeholder="Código de 20 caracteres" title="El código debe ser de 20 caracteres alfanuméricos" style="padding: 10px; width: 100%; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px;">
+        <button type="submit" style="padding: 10px 20px; background-color: #ff9999; border: none; color: white; font-size: 16px; cursor: pointer; border-radius: 5px;">Seguir aquí</button>
+      </form>
 
-  {% if request.user.is_authenticated %}
-  <form action="{% url 'account:logout' %}" method="post" class="logout-form">
-    {% csrf_token %}
-    <button type="submit" class="logout-button">
-      <i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión
-    </button>
-  </form>
-  {% endif %}
-
-
+      {% if request.user.is_authenticated %}
+        <form action="{% url 'account:logout' %}" method="post" class="logout-form">
+          {% csrf_token %}
+          <button type="submit" class="logout-button" style="padding: 10px 20px; background-color: #ff4d4d; border: none; color: white; font-size: 16px; cursor: pointer; border-radius: 5px;">
+            <i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión
+          </button>
+        </form>
+      {% endif %}
+      
+    </div>
+  </div>
 {% endblock %}

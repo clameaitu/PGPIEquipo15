@@ -1,17 +1,18 @@
 {% extends "shop/base.html" %}
+
 {% block title %} Crear una cuenta {% endblock %}
 
-
 {% block content %}
+  <div style="display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f8d0d6;">
+    <div style="padding: 20px; background-color: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); width: 100%; max-width: 400px;">
+      <h1 style="text-align: center;">Crear una cuenta</h1>
+      <p style="text-align: center;">Por favor, regístrate utilizando el siguiente formulario:</p>
 
-  <h1 style="margin-left: 25px;">Crear una cuenta</h1>
-
-  <p style="margin-left: 25px;">Por favor, regístrate utilizando el siguiente formulario:</p>
-
-  <form method="post" style="margin-left: 25px;">
-    {{ user_form.as_p }}
-    {% csrf_token %}
-    <p> <input type="submit" value="Crear mi cuenta"> </p>
-  </form>
-
+      <form method="post" style="display: flex; flex-direction: column; align-items: center;">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        <p style="text-align: center;"> <input type="submit" value="Crear mi cuenta"> </p>
+      </form>
+    </div>
+  </div>
 {% endblock %}
