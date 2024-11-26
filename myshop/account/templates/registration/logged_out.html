@@ -1,11 +1,17 @@
 {% extends "shop/base.html" %}
+
 {% block title %}Sesión cerrada{% endblock %}
+
 {% block content %}
-  <h1 style="margin-left: 25px;">Sesión cerrada</h1>
-  <p style="margin-left: 25px;">
-    Su sesión ha sido cerrada correctamente.
-  </p>
-  <p style="margin-left: 25px;">
-    Puede iniciar sesión nuevamente en <a href="{% url 'account:login' %}">este enlace</a>
-  </p>
+  <div style="display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f8d0d6;">
+    <div style="padding: 20px; background-color: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); width: 100%; max-width: 400px; text-align: center;">
+      <h1>Sesión cerrada</h1>
+      <p>
+        Su sesión ha sido cerrada correctamente.
+      </p>
+      <p>
+        Puede iniciar sesión nuevamente en <a href="{% url 'account:login' %}" style="color: #ff69b4; text-decoration: none;">este enlace</a>.
+      </p>
+    </div>
+  </div>
 {% endblock %}
