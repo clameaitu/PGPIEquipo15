@@ -6,29 +6,32 @@
 {% endblock %}
 
 {% block content %}
-  <div class="product-detail">
+  <div class="details-product">
     <img src="{% if product.imagen %} {{ product.imagen.url }} {% else %} {% static "img/no_image.png" %}{% endif %}">
-    <h1>{{ product.nombre }}</h1>
-    <p class="price">
-      {% if not product.disponible %}
-          <span style="text-decoration: line-through; color: gray;">${{ product.precio }}</span>
-          <span style="color: gray; font-weight: bold;">Agotado</span>
-        {% else %}
-          ${{ product.precio }}
-        {% endif %}
-    </p>
     
-    <form action="{% url "cart:cart_add" product.id %}" method="post">
-      {% if product.disponible %}
-      {{ cart_product_form }}
-      {% csrf_token %}
-      <div class="add-to-cart-wrapper">
-        <input type="submit" value="Añadir a la cesta" class="add-to-cart">
-      </div>
-      {% endif %}
-    </form>
-    <h3>Descripción</h3>
-        <p><strong>Categoría:</strong> {{ product.categoria }}</p>
-        <p>{{ product.descripcion|linebreaks }}</p>
+    <div class="details-text"> 
+      <h1>{{ product.nombre }}</h1>
+      <p class="price">
+        {% if not product.disponible %}
+            <span style="text-decoration: line-through; color: gray;">${{ product.precio }}</span>
+            <span style="color: gray; font-weight: bold;">Agotado</span>
+          {% else %}
+            ${{ product.precio }}
+          {% endif %}
+      </p>
+      
+      <form action="{% url "cart:cart_add" product.id %}" method="post">
+        {% if product.disponible %}
+        {{ cart_product_form }}
+        {% csrf_token %}
+        <div class="add-to-cart-wrapper">
+          <input type="submit" value="Añadir a la cesta" class="add-to-cart">
+        </div>
+        {% endif %}
+      </form>
+      <h3>Descripción</h3> 
+          <p>{{ product.descripcion}}</p>
+          <p><strong>Categoría:</strong> {{ product.categoria }}</p>
+    </div>
   </div>
 {% endblock %}
