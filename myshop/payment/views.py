@@ -60,4 +60,5 @@ def payment_canceled(request):
 def payment_in_person(request):
     order_id = request.session.get('order_id')
     order = get_object_or_404(Order, id=order_id)
+    email_service.send_mail(order.email, email_service.build_msg(order), "Compra Realizada")
     return render(request, 'payment/done_no_card.html', {'order': order})
