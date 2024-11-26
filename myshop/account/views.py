@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 
 def user_login(request):
     categories = Category.objects.all()
+    error_message = None
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -23,12 +24,13 @@ def user_login(request):
                     login(request, user)
                     return redirect('/')
                 else:
-                    return HttpResponse('Cuenta deshabilitada')
+                    form.add_error(None, 'Cuenta deshabilitada.')
             else:
-                return HttpResponse('Inicio de sesión incorrecto')
+                form.add_error(None, 'Inicio de sesión incorrecto.')
     else:
         form = LoginForm()
     return render(request, 'account/login.html', {'form': form, 'categories': categories})
+
 
 @login_required
 def dashboard(request):
