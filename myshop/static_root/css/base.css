@@ -1,0 +1,682 @@
+@import url(//fonts.googleapis.com/css?family=Ubuntu);
+
+html, body {
+    margin:0;
+    padding:0;
+    font-family:helvetica, sans-serif;
+    width: 100%;
+}
+
+h1, h2, h3, h4, h5 , h6 {
+    font-family: 'Poppins', sans-serif; font-weight:normal;
+}
+
+a {
+    text-decoration:none;
+    color:#ea899a;
+}
+
+a:hover {
+    color:#f67d92;
+}
+
+a.button, input[type="submit"] {
+    color:#fff;
+    background:#ea899a;
+    border-radius:4px;
+    padding:10px 20px;
+    font-size:14px;
+    border:0;
+}
+
+a.button.light {
+    color:#666;
+    background:#ededed;
+}
+
+.text-left {
+    text-align:left;
+}
+
+.text-right {
+    text-align:right;
+}
+
+table {
+    width:100%;
+    border-spacing:0;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    text-align:left;
+    font-size:14px;
+    padding:10px;
+    margin:0;
+}
+
+tbody tr:nth-child(odd) {
+    background:#efefef;
+}
+
+tbody tr.subtotal {
+    background:#ccc;
+}
+
+thead th, tbody tr.total {
+    background:#ea899a;
+    color:#fff;
+    font-weight:bold;
+}
+
+table.cart {
+    margin-bottom:40px;
+}
+
+table.cart img {
+    width:180px;
+}
+
+tbody td.num {
+    text-align:right;
+}
+
+td input[type="submit"] {
+    font-size:12px;
+    padding:4px 10px;
+}
+
+form p label, form p input {
+    float:left;
+    clear:both;
+}
+
+form p label {
+    font-size:14px;
+    padding-bottom:4px;
+}
+
+form p input {
+    width:300px;
+    font-size:13px;
+    margin-bottom:10px;
+    padding:10px 12px;
+    border:0;
+    background:#efefef;
+    color:#666;
+    border-radius:4px;
+}
+
+ul.errorlist {
+   float:left;
+   color:#ff0000;
+   clear:both;
+   font-size:13px;
+   margin:0;
+   padding:0;
+}
+
+#subheader {
+    background:#ececec;
+    color:#444;
+    padding:15px px;
+    overflow:auto;
+}
+
+#header .logo {
+    font-family: 'Ubuntu', sans-serif;
+    float:left;
+    color:#333;
+    font-size:22px;
+    margin-right:10%;
+}
+
+#subheader .cart {
+    float:right;
+    padding-top:4px;
+}
+
+#content {
+    padding:0 0px;
+    overflow:hidden;
+    min-height: calc(100vh - 120px); 
+}
+
+#sidebar {
+    width:220px;
+    padding:30px 20px 0 0;
+    float:left;
+    margin-left: 30px;
+}
+
+#sidebar ul{
+    margin:0;
+    padding:0;
+}
+
+#sidebar ul li {
+    margin:0;
+    list-style:none;
+    padding:10px 14px;
+}
+
+#sidebar ul li a {
+    display:block;
+}
+
+#sidebar ul li.selected {
+    background:#ea899a;
+    border-radius:4px;
+}
+
+#sidebar ul li.selected a {
+    color:#fff;
+}
+
+#main {
+    float:left;
+    width: 100%;
+    /* margin-right:-220px; */
+    overflow:hidden;
+}
+
+#main.product-list {
+    margin-left: 30px; 
+    margin-right: 30px; 
+    padding: 20px;      /* Puedes añadir también algo de padding */
+    flex-wrap: wrap;
+    gap: 20px; /* Espacio entre productos */
+}
+
+.product-list h1 {
+    font-size: 32px; /* Tamaño de fuente */
+    font-weight: normal; /* Negrita para el título */
+    margin-bottom: 10px; /* Espaciado debajo del título */
+    padding-bottom: 8px; /* Espaciado extra para la línea */
+    border-bottom: 5px solid #ea899a; /* Línea rosa debajo del título */
+    width: 91%; /* Aquí defines la longitud de la línea */
+    margin-right: 30px;
+}
+
+.product-list .item {
+    width:22%;
+    padding:10px 20px 10px 0;
+    margin-bottom: 20px;
+    margin-right: 30px; 
+    float:left;
+    text-align:center;
+    line-height:1.2;
+    box-sizing: border-box;
+}
+
+.product-list .item img {
+    width:100%;
+    margin-bottom:8px;
+    margin-right: 40px; 
+}
+
+.product-detail {
+    text-align:justify;
+}
+
+.product-detail .price {
+    color:#333;
+    font-size:28px;
+    font-weight:bold;
+}
+
+.product-detail img {
+    width:40%;
+    float:left;
+    padding:0 20px 20px 0;
+}
+
+.product-detail h1 {
+    margin-bottom:0;
+}
+
+.product-detail h2 {
+    margin-top:10px;
+}
+
+.order-form {
+    float:left;
+}
+
+.order-info {
+    float:right;
+    width:300px;
+    background:#efefef;
+    padding:10px 20px;
+    color:#333;
+    border-bottom:4px solid #ea899a;
+}
+
+.order-info h3 {
+    color:#ea899a;
+}
+
+.order-info ul li {
+    margin:0;
+    padding:0;
+    font-size:14px;
+}
+
+.order-info p {
+    font-weight:bold;
+    float:right;
+}
+
+.order-info span {
+    float:right;
+}
+
+.neg {
+    color:#dc1616;
+}
+
+.languages {
+   float:right;
+   padding-top:4px;
+   font-size:14px;
+}
+
+.languages ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+    float:left;
+}
+
+.languages ul li {
+    float:left;
+    margin:0 0 0 10px;
+    font-size:14px;
+}
+
+.languages p {
+    float:left;
+    margin:0;
+}
+
+.recommendations {
+    clear:both;
+}
+
+.recommendations div {
+    float:left;
+}
+
+.recommendations img {
+    width:200px
+}
+
+.recommendations p {
+    clear:both;
+}
+
+.recommendations.cart {
+    width:60%;
+    float:left;
+    overflow:auto;
+}
+
+.recommendations.cart h3 {
+    margin-top:0;
+}
+
+.recommendations.cart .item {
+    margin-right:10px;
+}
+
+.recommendations.cart img {
+    width:120px;
+}
+
+.search-container {
+    display: flex;
+    gap: 15px; /* Space between search bar and button */
+    align-items: center;
+}
+
+.search-container input[type="text"] {
+    width: 70%; /* Adjust width as needed */
+    padding: 10px 12px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: none;
+    background: #efefef;
+    
+}
+
+/* braintree hosted fields */
+form div.field {
+    font-size:13px;
+    color:#666;
+    width:300px;
+    height:22px;
+    margin-bottom:10px;
+    padding:6px 12px;
+    border:0;
+    background:#efefef;
+    color:#666;
+    border-radius:4px;
+}
+
+#header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f8f9fa;
+}
+  
+ 
+.header-icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+  
+.user-icon,
+.cart-icon {
+    font-size: 16px;
+}
+  
+.logout-form {
+    display: inline;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between; /* Espacio entre el logo, las categorías y los iconos */
+    align-items: left; /* Centrar verticalmente */
+    padding: 10px 10px;
+    background-color: #f8f9fa;
+    /* padding-left: 20px; */
+}
+
+.categories-container {
+    display: flex;
+    flex-grow: 1; /* Hace que las categorías tomen el espacio restante */
+    justify-content: left; /* Centra las categorías dentro de su contenedor */
+}
+
+.categories {
+    list-style: none;
+    display: flex;
+    gap: 30px; /* Espacio entre cada categoría */
+    padding: 0;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    color: #333;
+    text-transform: none; /* No convertir a mayúsculas */
+}
+  
+.categories li {
+    display: inline;
+}
+  
+.categories li a {
+    text-decoration: none;
+    color: #333;
+}
+
+.categories li a:hover {
+    color: #f67d92; /* Cambiar color al pasar el ratón */
+}
+  
+.categories li.selected a {
+    color: #f67d92;
+}
+  
+.user-cart-icons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+  
+.user-cart-icons a {
+    text-decoration: none;
+    color: #333;
+}
+  
+.user-cart-icons a:hover {
+    color: #f67d92;
+}
+
+.user-icon, .cart-icon {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.search-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+}
+
+#search-input {
+    padding: 8px;
+    font-size: 14px;
+    border: none;
+    outline: none;
+    color: #333;
+    background: none;
+    width: 150px;
+}
+
+.submit-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #ea899a;
+    font-size: 17px;
+    padding-left: 10px;
+}
+
+.submit-button:focus {
+    outline: none; /* Quitar el borde al hacer focus */
+}
+
+.banner {
+    width: 100%; /* Asegura que use todo el ancho de la ventana */
+    background-color: #f8f9fa;
+    text-align: center;
+    padding: 20px 0; /* Añade espacio arriba y abajo si es necesario */
+    margin: 0; /* Elimina cualquier margen */
+    padding: 0;
+}
+  
+.banner-img {
+    width: 100%;  /* Hace que la imagen ocupe el 100% del ancho */
+    height: auto;
+    max-width: 2000px;  /* Limita el tamaño máximo de la imagen */
+    margin: 0 auto;  /* Centra la imagen */
+    display: block;
+}
+.banner h1 {
+    margin: 0;
+}
+
+/* Footer */
+.footer-container {
+    
+    background-color: #f8f9fa;
+    padding: 20px;
+    text-align: center;
+}
+  
+.pedido-form-inline {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+}
+  
+.pedido-form-inline form {
+    display: flex;
+    align-items: left;
+    gap: 10px;
+}
+  
+.pedido-form-inline input[type="text"] {
+    width: 300px;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+  
+.pedido-form-inline button {
+    padding: 10px 15px;
+    background-color: #ea899a;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+  
+.pedido-form-inline button:hover {
+    background-color: #f67d92;
+}
+  
+.error-message {
+    margin-top: 10px;
+    color: red;
+    font-weight: bold;
+    display: flex;
+    align-items: left;
+    gap: 10px;
+}
+
+
+#search.products-list {
+    margin-left: 30px; 
+    margin-right: 30px; 
+    padding: 20px;      /* Puedes añadir también algo de padding */
+    flex-wrap: wrap;
+    gap: 20px; /* Espacio entre productos */
+}
+
+.products-list h1 {
+    font-size: 32px; /* Tamaño de fuente */
+    font-weight: normal; /* Negrita para el título */
+    margin-bottom: 10px; /* Espaciado debajo del título */
+    padding-bottom: 8px; /* Espaciado extra para la línea */
+    border-bottom: 5px solid #ea899a; /* Línea rosa debajo del título */
+    width: 86%; /* Aquí defines la longitud de la línea */
+    margin-right: 30px;
+    margin-left: 220px;
+}
+
+.products-list .item {
+    width:22%;
+    padding:10px 20px 10px 0;
+    margin-bottom: 20px;
+    margin-right: 30px; 
+    float:left;
+    text-align:center;
+    line-height:1.2;
+    box-sizing: border-box;
+}
+
+.products-list .item img {
+    width:100%;
+    margin-bottom:8px;
+    margin-right: 40px; 
+}
+
+.products-detail {
+    text-align:justify;
+}
+
+.products-detail .price {
+    color:#333;
+    font-size:28px;
+    font-weight:bold;
+}
+
+.products-detail img {
+    width:40%;
+    float:left;
+    padding:0 20px 20px 0;
+}
+
+.products-detail h1 {
+    margin-bottom:0;
+}
+
+.products-detail h2 {
+    margin-top:10px;
+}
+
+.details-product {
+    display: flex;
+    align-items: flex-start; /* Alinea los elementos en la parte superior */
+    gap: 20px; /* Espacio entre la imagen y el texto */
+    margin: 20px; /* Margen alrededor del contenedor */
+}
+
+.details-product img {
+    max-width: 600px;
+    border-radius: 5px; /* Bordes redondeados */
+    height: auto;
+}
+
+.details-product .details-text {
+    display: flex;
+    flex-direction: column; /* Apila los elementos verticalmente */
+    gap: 0; /* Espacio entre los elementos de texto */
+    flex: 1; /* Asegura que el texto tome el espacio disponible */
+}
+
+.details-product h1 {
+    font-size: 28px;
+    margin: 0; /* Elimina márgenes extra */
+}
+
+.details-product h3 {
+    font-size: 20px;
+    margin-top: 20px; /* Elimina márgenes extra */
+    margin-bottom: 0;
+}
+.details-product .price {
+    font-size: 20px;
+    color: gray;
+}   
+
+.details-product p {
+    font-size: 16px;
+    color: #555;
+    margin-top: 7px;
+    margin-bottom: 7px;
+}
+
+.details-product .add-to-cart-wrapper {
+    margin-top: 20px; /* Espaciado entre el texto y el botón */
+}
+
+.add-to-cart {
+    padding: 10px 20px;
+    background-color: #ea899a;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.add-to-cart:hover {
+    background-color: #f67d92;
+}
